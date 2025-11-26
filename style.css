@@ -20,14 +20,30 @@ header {
     border: 2px solid #333;
 }
 
-#bio {
-    font-style: italic;
-    margin-top: 10px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.4;
+.certificate-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
 }
+
+.certificate-image-only {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.certificate-image-only img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.certificate-image-only img:hover {
+    transform: scale(1.02);
+}
+
 
 button {
 	padding: 10px 20px;
