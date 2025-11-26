@@ -44,6 +44,41 @@ header {
     transform: scale(1.02);
 }
 
+.projects-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.project-image-container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.project-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.project-link:active .project-image {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
 
 button {
 	padding: 10px 20px;
