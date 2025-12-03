@@ -1,4 +1,4 @@
-/* Core Theme Tokens */
+/*Core Theme Tokens*/
 :root {
     --bg: #faf7f9;
     --bg-elevated: #ffffff;
@@ -34,7 +34,7 @@ body.dark {
     --shadow-strong: 0 26px 80px rgba(0, 0, 0, 0.9);
 }
 
-/*  Base Layout*/
+/*Base Layout*/
 *,
 *::before,
 *::after {
@@ -110,7 +110,7 @@ main {
     opacity: 0.8;
 }
 
-/* Header*/
+/*Header*/
 .site-header {
     max-width: 1040px;
     margin: 0 auto 32px;
@@ -194,7 +194,7 @@ body.dark .role-pill {
     font-size: 0.95rem;
 }
 
-/* Theme Toggle */
+/*Theme Toggle*/
 #theme-toggle {
     border-radius: 999px;
     border: 1px solid var(--pink-accent-soft);
@@ -383,7 +383,7 @@ body.dark #theme-toggle {
     outline-offset: 2px;
 }
 
-/*  Footer */
+/*Footer*/
 .site-footer {
     max-width: 1040px;
     margin: 28px auto 0;
@@ -400,7 +400,7 @@ body.dark #theme-toggle {
     color: var(--text-muted);
 }
 
-/*  Contact */
+/*Contact*/
 .contact-icon-row {
     display: flex;
     align-items: center;
@@ -438,7 +438,7 @@ body.dark #theme-toggle {
     line-height: 1;
 }
 
-/* Responsive */
+/*Responsive*/
 @media (max-width: 720px) {
     body {
         padding: 20px 14px 28px;
