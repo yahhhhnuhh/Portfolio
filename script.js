@@ -33,3 +33,4 @@ toggleButton.addEventListener('click', () => {
     applyTheme(nextTheme);
     window.localStorage.setItem(THEME_KEY, nextTheme);
 });
+
