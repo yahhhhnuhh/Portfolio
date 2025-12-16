@@ -1,28 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Julliana Onor | Portfolio</title>
-      <link rel="stylesheet" href="style.css" />
-      <link
-         rel="stylesheet"
-         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-      />
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+      <style>
+         .rdp {
+            --rdp-cell-size: 40px;
+            --rdp-accent-color: #0000ff;
+            --rdp-background-color: #e7edff;
+            --rdp-accent-color-dark: #3003e1;
+            --rdp-background-color-dark: #180270;
+            --rdp-outline: 2px solid var(--rdp-accent-color);
+            --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
+            margin: 1em;
+         }
+         .rdp-vhidden {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            border: 0;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            position: absolute !important;
+            top: 0;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            clip: rect(1px, 1px, 1px, 1px) !important;
+            border: 0 !important;
+         }
+         .rdp-button_reset {
+            appearance: none;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+            color: inherit;
+            outline: none;
+            background: none;
+            font: inherit;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+         }
+         .rdp-button {
+            border: 2px solid transparent;
+         }
+         .rdp-button[disabled] {
+            opacity: 0.25;
+         }
+         .rdp-button:not([disabled]) {
+            cursor: pointer;
+         }
+         .rdp-button:focus:not([disabled]),
+         .rdp-button:active:not([disabled]) {
+            color: inherit;
+            border: var(--rdp-outline);
+            background-color: var(--rdp-background-color);
+         }
+         .rdp-button:hover:not([disabled]) {
+            background-color: var(--rdp-background-color);
+         }
+         .rdp-months {
+            display: flex;
+         }
+         .rdp-month {
+            margin: 0 1em;
+         }
+         .rdp-month:first-child {
+            margin-left: 0;
+         }
+         .rdp-month:last-child {
+            margin-right: 0;
+         }
+         .rdp-table {
+            margin: 0;
+            max-width: calc(var(--rdp-cell-size) * 7);
+            border-collapse: collapse;
+         }
+         .rdp-with_weeknumber .rdp-table {
+            max-width: calc(var(--rdp-cell-size) * 8);
+            border-collapse: collapse;
+         }
+         .rdp-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            text-align: left;
+         }
+         .rdp-multiple_months .rdp-caption {
+            position: relative;
+            display: block;
+            text-align: center;
+         }
+         .rdp-caption_dropdowns {
+            position: relative;
+            display: inline-flex;
+         }
+         .rdp-caption_label {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            margin: 0;
+            padding: 0 0.25em;
+            white-space: nowrap;
+            color: currentColor;
+            border: 0;
+            border: 2px solid transparent;
+            font-family: inherit;
+            font-size: 140%;
+            font-weight: bold;
+         }
+         .rdp-nav {
+            white-space: nowrap;
+         }
+         .rdp-multiple_months .rdp-caption_start .rdp-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+         }
+         .rdp-multiple_months .rdp-caption_end .rdp-nav {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+         }
+         .rdp-nav_button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--rdp-cell-size);
+            height: var(--rdp-cell-size);
+            padding: 0.25em;
+            border-radius: 100%;
+         }
+         .rdp-dropdown_year,
+         .rdp-dropdown_month {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+         }
+         .rdp-dropdown {
+            appearance: none;
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            cursor: inherit;
+            opacity: 0;
+            border: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+         }
+         .rdp-dropdown[disabled] {
+            opacity: unset;
+            color: unset;
+         }
+         .rdp-dropdown:focus:not([disabled]) + .rdp-caption_label,
+         .rdp-dropdown:active:not([disabled]) + .rdp-caption_label {
+            border: var(--rdp-outline);
+            border-radius: 6px;
+            background-color: var(--rdp-background-color);
+         }
+         .rdp-dropdown_icon {
+            margin: 0 0 0 5px;
+         }
+         .rdp-head {
+            border: 0;
+         }
+         .rdp-head_row,
+         .rdp-row {
+            height: 100%;
+         }
+         .rdp-head_cell {
+            vertical-align: middle;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-align: center;
+            height: 100%;
+            height: var(--rdp-cell-size);
+            padding: 0;
+         }
+         .rdp-tbody {
+            border: 0;
+         }
+         .rdp-tfoot {
+            margin: 0.5em;
+         }
+         .rdp-cell {
+            width: var(--rdp-cell-size);
+            height: 100%;
+            height: var(--rdp-cell-size);
+            padding: 0;
+            text-align: center;
+         }
+         .rdp-weeknumber {
+            font-size: 0.75em;
+         }
+         .rdp-weeknumber,
+         .rdp-day {
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: var(--rdp-cell-size);
+            max-width: var(--rdp-cell-size);
+            height: var(--rdp-cell-size);
+            margin: 0;
+            border: 2px solid transparent;
+            border-radius: 100%;
+         }
+         .rdp-day_today:not(.rdp-day_outside) {
+            font-weight: bold;
+         }
+         .rdp-day_selected:not([disabled]),
+         .rdp-day_selected:focus:not([disabled]),
+         .rdp-day_selected:active:not([disabled]),
+         .rdp-day_selected:hover:not([disabled]) {
+            color: white;
+            background-color: var(--rdp-accent-color);
+         }
+         .rdp-day_selected:focus:not([disabled]) {
+            border: var(--rdp-outline-selected);
+         }
+         .rdp:not([dir='rtl']) .rdp-day_range_start:not(.rdp-day_range_end) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+         }
+         .rdp:not([dir='rtl']) .rdp-day_range_end:not(.rdp-day_range_start) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+         }
+         .rdp[dir='rtl'] .rdp-day_range_start:not(.rdp-day_range_end) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+         }
+         .rdp[dir='rtl'] .rdp-day_range_end:not(.rdp-day_range_start) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+         }
+         .rdp-day_range_end.rdp-day_range_start {
+            border-radius: 100%;
+         }
+         .rdp-day_range_middle {
+            border-radius: 0;
+         }
+      </style>
    </head>
-   <body>
+   <body class="dark">
       <header class="site-header">
          <div class="header-main">
             <div class="identity">
                <h1 id="name">Julliana Louise Onor</h1>
                <p id="course-year">2nd Year · BS Computer Science · Mapúa Malayan Colleges Mindanao</p>
             </div>
-            <button id="theme-toggle" aria-label="Toggle dark mode">
-               <span class="theme-icon" aria-hidden="true">🌙</span>
+            <button id="theme-toggle" aria-label="Switch to light mode">
+               <span class="theme-icon" aria-hidden="true">☀️</span>
             </button>
          </div>
          <div class="header-profile">
-            <img src="profile.jpg" alt="Profile picture of Julliana Louise Onor" id="profile-img" />
+            <img src="profile.jpg" alt="Profile picture of Julliana Louise Onor" id="profile-img">
             <div class="header-tagline">
                <p class="role-pill">Computer Science Student ✿ Student Leader</p>
                <p class="short-intro">
@@ -41,12 +294,12 @@
             </div>
             <p>
                Hi, I'm <strong>Julliana Onor</strong>, a 2nd‑year BS Computer Science student at
-               <strong>Mapúa Malayan Colleges Mindanao</strong>. I’m slowly building my foundations in programming,
+               <strong>Mapúa Malayan Colleges Mindanao</strong>. I'm slowly building my foundations in programming,
                from my first Java application to my first web UIs, and I love keeping my work clean, organized,
                and gently pink.
             </p>
             <p>
-               Outside of class, I’m very active in <strong>leadership and student organizations</strong>. As President
+               Outside of class, I'm very active in <strong>leadership and student organizations</strong>. As President
                of the <strong>Computing Students' Society</strong>, I help plan events, support my peers, and create a
                welcoming space for computing students to grow together.
             </p>
@@ -62,7 +315,7 @@
             <div class="certificate-grid">
                <article class="certificate-card">
                   <div class="certificate-image-wrapper">
-                     <img src="certificate1.jpg" alt="CodeChum C++ Programming Certificate" />
+                     <img src="certificate1.jpg" alt="CodeChum C++ Programming Certificate">
                   </div>
                   <div class="certificate-body">
                      <h3>CodeChum C++ Basics Certificate</h3>
@@ -90,11 +343,7 @@
                <article class="project-card">
                   <a href="https://oop-dev.vercel.app/" target="_blank" class="project-link" rel="noopener noreferrer">
                      <div class="project-image-wrapper">
-                        <img
-                           src="travel-project.png"
-                           alt="Screenshot of a travel stay finder web project"
-                           class="project-image"
-                        />
+                        <img src="travel-project.png" alt="Screenshot of a travel stay finder web project" class="project-image">
                      </div>
                      <div class="project-body">
                         <h3>Kelsey's Homestay</h3>
@@ -110,23 +359,47 @@
                   </a>
                </article>
                <article class="project-card">
+                  <a href="https://yahhhhnuhh.github.io/StrokeSense/" target="_blank" class="project-link" rel="noopener noreferrer">
+                     <div class="project-image-wrapper">
+                        <img src="StrokeSense.png" alt="Screenshot of StrokeSense Baybayin learning application interface" class="project-image">
+                     </div>
+                     <div class="project-body">
+                        <h3>StrokeSense: Learn Baybayin</h3>
+                        <p>
+                           A <strong>Web Programming Laboratory activity</strong> where I designed and developed a landing page
+                           for a case study about an interactive platform for learning the ancient Filipino Baybayin script.
+                        </p>
+                        <p>
+                           This project demonstrates my ability to translate a case study concept into a functional,
+                           visually appealing landing page with clear information architecture and responsive design.
+                        </p>
+                        <p class="tech-stack">
+                           <strong>Lab Activity · Web Programming</strong>
+                        </p>
+                        <p class="tech-stack">
+                           <strong>Techstack:</strong> HTML5, CSS3, JavaScript, Responsive Design
+                        </p>
+                     </div>
+                  </a>
+               </article>
+               <article class="project-card">
                   <a href="https://yahhhhnuhh.github.io/MachineProblems/" target="_blank" class="project-link" rel="noopener noreferrer">
                      <div class="project-image-wrapper">
-                        <img
-                           src="MachineProblem.png"
-                           alt="Screenshot of Machine Problems web project"
-                           class="project-image"
-                        />
+                        <img src="MachineProblem.png" alt="Screenshot of Machine Problems web application interface" class="project-image">
                      </div>
                      <div class="project-body">
                         <h3>Machine Problems</h3>
                         <p>
-                           A collection of interactive web applications featuring Machine Problem 4 (Count Characters)
-                           and Machine Problem 5 (Email Check).
+                           A collection of interactive web exercises featuring character counting and email validation tools,
+                           designed with a pop of girlish color and playful aesthetics that make coding practice feel fun and inviting.
                         </p>
                         <p>
-                           Practical exercises demonstrating form handling, input validation, and character counting
-                           functionality with clean, user-friendly interfaces.
+                           This project showcases practical JavaScript applications including a character counter that analyzes text input
+                           and an email validator that checks for proper email format. Built as part of my web development learning journey,
+                           it demonstrates my ability to create functional, user-friendly interfaces with clean code and delightful design.
+                        </p>
+                        <p class="tech-stack">
+                           <strong>Techstack:</strong> HTML5, CSS3, JavaScript
                         </p>
                      </div>
                   </a>
@@ -142,29 +415,13 @@
                <div class="section-accent"></div>
             </div>
             <div class="contact-icon-row">
-               <a
-                  class="contact-icon-button"
-                  href="mailto:jlOnor@mcm.edu.ph"
-                  aria-label="Email"
-               >
+               <a class="contact-icon-button" href="mailto:jlOnor@mcm.edu.ph" aria-label="Email">
                   <i class="contact-icon-symbol bi bi-envelope-fill"></i>
                </a>
-               <a
-                  class="contact-icon-button"
-                  href="https://github.com/yahhhhnuhh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-               >
+               <a class="contact-icon-button" href="https://github.com/yahhhhnuhh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                   <i class="contact-icon-symbol bi bi-github"></i>
                </a>
-               <a
-                  class="contact-icon-button"
-                  href="https://www.linkedin.com/in/julliana-louise-onor-40a442250/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-               >
+               <a class="contact-icon-button" href="https://www.linkedin.com/in/julliana-louise-onor-40a442250/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <i class="contact-icon-symbol bi bi-linkedin"></i>
                </a>
             </div>
