@@ -302,6 +302,23 @@ body.dark #theme-toggle {
     font-size: 0.93rem;
 }
 
+.certificate-verify {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.certificate-verify a {
+    color: var(--pink-deep);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.certificate-verify a:hover {
+    color: var(--pink-accent);
+    text-decoration: underline;
+}
+
 /*Projects*/
 .projects-grid {
     display: grid;
