@@ -232,6 +232,90 @@ body.dark #theme-toggle {
     box-shadow: 0 0 0 1px var(--pink-accent-soft);
 }
 
+/*Academics*/
+.academic-timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1040px;
+    margin-inline: auto;
+}
+
+.academic-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    transition:
+        box-shadow var(--transition-med),
+        transform var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+}
+
+.academic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--pink-accent);
+}
+
+.academic-card-current {
+    border-color: var(--pink-accent);
+    background:
+        linear-gradient(135deg, var(--pink-accent-soft), transparent 55%),
+        var(--bg-elevated);
+}
+
+.academic-logo-wrapper {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: var(--bg-soft);
+}
+
+.academic-logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+    transition: transform var(--transition-med);
+}
+
+.academic-card:hover .academic-logo-wrapper img {
+    transform: scale(1.06);
+}
+
+.academic-body {
+    min-width: 0;
+}
+
+.academic-years {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+}
+
+.academic-body h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+.academic-body p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
 /*Certificates*/
 .certificate-grid {
     display: grid;
@@ -515,6 +599,10 @@ body.dark #theme-toggle {
         font-size: 0.9rem;
     }
 
+    .academic-timeline {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .certificate-card {
         grid-template-columns: minmax(0, 1fr);
         padding: 14px 14px 16px;
@@ -604,10 +692,25 @@ body.dark #theme-toggle {
         font-size: 0.85rem;
     }
 
+    .academic-card,
     .certificate-card,
     .project-card {
         padding: 12px 12px 14px;
         border-radius: 14px;
+    }
+
+    .academic-logo-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+    }
+
+    .academic-body h3 {
+        font-size: 0.92rem;
+    }
+
+    .academic-body p {
+        font-size: 0.85rem;
     }
 
     .certificate-body h3,
