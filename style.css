@@ -234,67 +234,121 @@ body.dark #theme-toggle {
 
 /*Academics*/
 .academic-timeline {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    max-width: 1040px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 720px;
     margin-inline: auto;
+    padding-left: 4px;
+}
+
+.academic-timeline::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 43px;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        var(--pink-accent) 12%,
+        var(--pink-accent) 88%,
+        transparent
+    );
+    opacity: 0.55;
 }
 
 .academic-card {
-    display: flex;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
     align-items: center;
-    gap: 16px;
-    padding: 16px 18px;
-    border-radius: 18px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-soft);
-    transition:
-        box-shadow var(--transition-med),
-        transform var(--transition-med),
-        border-color var(--transition-med),
-        background var(--transition-med);
+    gap: 20px;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .academic-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-strong);
-    border-color: var(--pink-accent);
+    transform: none;
 }
 
-.academic-card-current {
-    border-color: var(--pink-accent);
-    background:
-        linear-gradient(135deg, var(--pink-accent-soft), transparent 55%),
-        var(--bg-elevated);
+.academic-marker {
+    display: flex;
+    justify-content: center;
 }
 
 .academic-logo-wrapper {
     flex-shrink: 0;
-    width: 72px;
-    height: 72px;
-    border-radius: 16px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     overflow: hidden;
     display: grid;
     place-items: center;
-    background: var(--bg-soft);
+    background: var(--bg-elevated);
+    border: 3px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    transition:
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        transform var(--transition-med);
+}
+
+.academic-card:hover .academic-logo-wrapper {
+    border-color: var(--pink-accent);
+    box-shadow: var(--shadow-strong);
+    transform: scale(1.04);
+}
+
+.academic-card-current .academic-logo-wrapper {
+    border-color: var(--pink-accent);
+    box-shadow:
+        0 0 0 4px var(--pink-accent-soft),
+        var(--shadow-soft);
 }
 
 .academic-logo-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 6px;
+    object-fit: cover;
     transition: transform var(--transition-med);
 }
 
 .academic-card:hover .academic-logo-wrapper img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
 .academic-body {
     min-width: 0;
+    padding: 16px 20px;
+    border-radius: 18px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    transition:
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        transform var(--transition-med),
+        background var(--transition-med);
+}
+
+.academic-card:hover .academic-body {
+    transform: translateX(4px);
+    border-color: var(--pink-accent);
+    box-shadow: var(--shadow-strong);
+}
+
+.academic-card-current .academic-body {
+    border-color: var(--pink-accent);
+    background:
+        linear-gradient(135deg, var(--pink-accent-soft), transparent 60%),
+        var(--bg-elevated);
 }
 
 .academic-years {
@@ -308,7 +362,7 @@ body.dark #theme-toggle {
 
 .academic-body h3 {
     margin: 0 0 4px;
-    font-size: 1rem;
+    font-size: 1.02rem;
 }
 
 .academic-body p {
@@ -600,7 +654,24 @@ body.dark #theme-toggle {
     }
 
     .academic-timeline {
-        grid-template-columns: minmax(0, 1fr);
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .academic-timeline::before {
+        left: 35px;
+    }
+
+    .academic-card {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 14px;
+        padding: 10px 0;
+    }
+
+    .academic-logo-wrapper {
+        width: 64px;
+        height: 64px;
+        border-width: 2px;
     }
 
     .certificate-card {
@@ -692,17 +763,25 @@ body.dark #theme-toggle {
         font-size: 0.85rem;
     }
 
-    .academic-card,
-    .certificate-card,
-    .project-card {
-        padding: 12px 12px 14px;
-        border-radius: 14px;
+    .academic-card {
+        gap: 12px;
+        grid-template-columns: 60px minmax(0, 1fr);
+    }
+
+    .academic-timeline::before {
+        left: 29px;
+        top: 32px;
+        bottom: 32px;
     }
 
     .academic-logo-wrapper {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .academic-body {
+        padding: 12px 14px;
+        border-radius: 14px;
     }
 
     .academic-body h3 {
@@ -711,6 +790,12 @@ body.dark #theme-toggle {
 
     .academic-body p {
         font-size: 0.85rem;
+    }
+
+    .certificate-card,
+    .project-card {
+        padding: 12px 12px 14px;
+        border-radius: 14px;
     }
 
     .certificate-body h3,
